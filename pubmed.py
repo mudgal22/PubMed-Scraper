@@ -20,15 +20,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import re
 
 #Creating an empty dataframe to store the extracted results
-
 final_df = pd.DataFrame(columns=['title', 'author_name', 'affiliation', 'doi', 'date', 'email'])
-
 
 # This chunk uses Beautiful Soup to extract the PMIDs of articles of interest from the article information pulled by the "eutils" endpoint of the Pubmed API 
 # The articles of interest are first sorted based on the Pubmed Advanced search term queries, which are defined as search_terms1 and search_terms2 in this code. 
-
-
-
 
 #Empty list to store PMIDs of the results
 pmids=[]
@@ -60,11 +55,7 @@ texts = soup.find_all('id')
 for text in texts:
     pmids.append(text.get_text())
 
-
-
 #This Chunk uses Selenium package to extract the required information from each of the extracted articles by going to their respective PubMed webpage using the list of PMIDs 
-
-
 
 # Loop through the PMIDs and retrieve the details of each article
 # This Try Except clause enables Saving the output as CSV until the latest scraped result even if the scraper errors out in the middle of the code run.
@@ -72,7 +63,6 @@ try:
     for pmid in pmids[0:25]:
         browser = webdriver.Chrome()
         article_url = "https://pubmed.ncbi.nlm.nih.gov/"+ pmid +"/"
-    
         s2 = browser.get(article_url)
 
         # Wait for the expand button to be visible and click it
@@ -133,7 +123,6 @@ try:
         print(df2)
         final_df = final_df.append(df2)
         browser.quit()
-
 
 except:
     final_df.to_csv("pubmed_out.csv", index=False)
