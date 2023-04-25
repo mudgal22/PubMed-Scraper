@@ -1,7 +1,7 @@
 # PubMed-Scraper
-A Python script to scrape article, author and affiliation information from PubMed
+A Python script to scrape article, author and affiliation information from PubMed public repository using automation for the MeSH terms of interest. 
 
-Required Packages : 
+Required Python Packages : 
 
 -BeautifulSoup
 
@@ -10,3 +10,5 @@ Required Packages :
 -Pandas
 
 -re
+
+-numPy
